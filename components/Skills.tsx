@@ -1,50 +1,90 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { skills } from "@/lib/data";
+
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-white">
+    <section id="skills" className="py-24 bg-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-14"
+        >
           <span className="section-label">My Skills</span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900">
+          <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900">
             Technical Expertise
           </h2>
-          <p className="mt-3 text-slate-600 max-w-xl mx-auto">
-            Kombinasi keahlian dari latar belakang statistik, pengembangan web full stack, dan
-            blockchain engineering.
+          <p className="mt-3 text-slate-500 max-w-xl mx-auto leading-relaxed">
+            Kombinasi keahlian dari latar belakang statistik, pengembangan web full stack, dan blockchain engineering.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Skills grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
           {skills.map((skillGroup) => (
-            <div
+            <motion.div
               key={skillGroup.category}
-              className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-md hover:border-slate-300 transition-all duration-300"
+              variants={cardVariants}
+              whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="bg-white border-2 border-slate-100 rounded-3xl p-6 hover:border-slate-200 transition-colors duration-200 cursor-default"
             >
               {/* Category header */}
-              <div className="flex items-center gap-3 mb-4">
-                <span
-                  className={`w-2.5 h-2.5 rounded-full ${skillGroup.dotClass} flex-shrink-0`}
+              <div className="flex items-center gap-3 mb-5">
+                <motion.span
+                  whileHover={{ scale: 1.6 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  className={`w-3 h-3 rounded-full ${skillGroup.dotClass} flex-shrink-0`}
                 />
-                <h3 className="font-bold text-slate-800">{skillGroup.category}</h3>
+                <h3 className="font-extrabold text-slate-800">{skillGroup.category}</h3>
               </div>
 
-              {/* Skill chips */}
-              <div className="flex flex-wrap gap-2">
+              {/* Chip items */}
+              <motion.div
+                variants={{ hidden: {}, show: { transition: { staggerChildren: 0.04 } } }}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                className="flex flex-wrap gap-2"
+              >
                 {skillGroup.items.map((item) => (
-                  <span
+                  <motion.span
                     key={item}
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.8 },
+                      show: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
+                    }}
+                    whileHover={{ scale: 1.08 }}
                     className={`skill-chip ${skillGroup.bgClass} ${skillGroup.textClass} ${skillGroup.borderClass}`}
                   >
                     {item}
-                  </span>
+                  </motion.span>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
