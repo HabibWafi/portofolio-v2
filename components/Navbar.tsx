@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Education", href: "#education" },
+  { label: "Services", href: "#services", highlight: true },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -48,9 +48,16 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-sm text-slate-600 hover:text-blue-600 font-medium rounded-full hover:bg-blue-50 transition-all"
+              className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                link.highlight
+                  ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
+                  : "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+              }`}
             >
               {link.label}
+              {link.highlight && (
+                <span className="ml-1.5 inline-block w-1.5 h-1.5 bg-amber-400 rounded-full align-middle" />
+              )}
             </a>
           ))}
         </div>
