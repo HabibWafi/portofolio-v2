@@ -1,7 +1,17 @@
-import { Mail, Github, Linkedin, Instagram, MapPin, Send, ExternalLink } from "lucide-react";
+import { Mail, Github, Linkedin, Instagram, MapPin, Send, ExternalLink, MessageCircle } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 
 const socialLinks = [
+  {
+    icon: MessageCircle,
+    label: "WhatsApp",
+    handle: "+62 812-3456-7890",
+    href: `https://wa.me/${personalInfo.whatsapp}?text=Halo%20Habib%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website%20Anda`,
+    bg: "bg-green-500 hover:bg-green-600",
+    iconColor: "text-white",
+    border: "border-green-400 hover:border-green-300",
+    desc: "Chat langsung, respon cepat",
+  },
   {
     icon: Github,
     label: "GitHub",
@@ -15,7 +25,7 @@ const socialLinks = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    handle: "Habib Wafi",
+    handle: "Habibullah Hibatul Wafi",
     href: personalInfo.linkedin,
     bg: "bg-blue-600 hover:bg-blue-700",
     iconColor: "text-white",
