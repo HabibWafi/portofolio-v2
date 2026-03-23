@@ -100,7 +100,7 @@ export const projects = [
       "Web dashboard interaktif untuk visualisasi dan analisis data statistik Kabupaten Musi Rawas. Dilengkapi berbagai jenis chart, laporan dinamis, dan fitur ekspor data.",
     tech: ["Next.js", "TypeScript", "Chart.js", "PostgreSQL", "Tailwind CSS"],
     github: "#",
-    live: "#",
+    live: "/projects/bps-dashboard",
     featured: true,
   },
   {
@@ -109,7 +109,7 @@ export const projects = [
       "Platform analitik berbasis machine learning untuk prediksi tren dan analisis data mendalam. Menggunakan model AI modern untuk menghasilkan insight yang akurat dan actionable.",
     tech: ["Python", "TensorFlow", "FastAPI", "React", "Docker"],
     github: "#",
-    live: "#",
+    live: "/projects/ai-analytics",
     featured: true,
   },
   {
@@ -118,7 +118,7 @@ export const projects = [
       "Smart contract DeFi dengan fitur staking, token swap, dan liquidity pool. Dibangun di atas Ethereum dengan standar keamanan tinggi dan gas optimization.",
     tech: ["Solidity", "Ethereum", "Web3.js", "Hardhat", "React"],
     github: "#",
-    live: "#",
+    live: "/projects/defi",
     featured: true,
   },
   {
@@ -127,7 +127,7 @@ export const projects = [
       "Platform e-commerce full stack dengan manajemen produk, keranjang belanja, integrasi payment gateway, dan dashboard admin yang komprehensif.",
     tech: ["Next.js", "Node.js", "PostgreSQL", "Tailwind CSS"],
     github: "#",
-    live: "#",
+    live: "/projects/ecommerce",
     featured: false,
   },
 ];

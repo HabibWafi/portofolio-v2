@@ -72,10 +72,10 @@ export default function Projects() {
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors"
+                    className="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-700 font-semibold transition-colors"
                   >
                     <ExternalLink size={15} />
-                    Live Demo
+                    Live Demo ↗
                   </a>
                 </div>
               </div>
