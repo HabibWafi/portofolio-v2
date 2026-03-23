@@ -45,3 +45,7 @@ body {
 .card-hover {
   @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5;
 }
+
+/* Scrollbar hide utility */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

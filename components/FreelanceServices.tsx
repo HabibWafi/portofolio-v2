@@ -1,13 +1,11 @@
+"use client";
+
+import { motion } from "framer-motion";
 import {
-  Monitor,
-  Briefcase,
-  ShoppingCart,
-  Code2,
-  ArrowRight,
-  CheckCircle2,
-  Sparkles,
-  Zap,
+  Monitor, Briefcase, ShoppingCart, Code2,
+  ArrowRight, CheckCircle2, Sparkles, Zap, MessageCircle,
 } from "lucide-react";
+import { personalInfo } from "@/lib/data";
 
 const services = [
   {
@@ -44,64 +42,92 @@ const services = [
   },
 ];
 
-// 🔗 Ganti URL ini dengan link website freelance kamu ketika sudah tersedia
 const FREELANCE_SITE_URL = "#";
+
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
+const cardVariants = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 export default function FreelanceServices() {
   return (
-    <section id="services" className="py-20 relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900">
-      {/* Background pattern */}
+    <section id="services" className="py-24 relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900">
+      {/* Dot pattern */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+          backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
           backgroundSize: "32px 32px",
         }}
       />
-      {/* Glow blobs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl" />
+
+      {/* Animated glow blobs */}
+      <motion.div
+        animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.35, 0.2] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"
+      />
+      <motion.div
+        animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.28, 0.15] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute bottom-0 left-0 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl pointer-events-none"
+      />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full mb-5">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55 }}
+          className="text-center mb-14"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full mb-5 backdrop-blur-sm">
             <Sparkles size={13} className="text-amber-300" />
-            <span className="text-white/80 text-xs font-semibold uppercase tracking-widest">
-              Freelance Services
-            </span>
+            <span className="text-white/80 text-xs font-bold uppercase tracking-widest">Freelance Services</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-            Butuh Website
-            <br />
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            Butuh Website<br />
             <span className="text-amber-300">Profesional?</span>
           </h2>
           <p className="mt-4 text-blue-200 max-w-2xl mx-auto leading-relaxed">
-            Saya menerima proyek pembuatan website untuk bisnis, startup, dan personal.
-            Setiap website dibangun dengan teknologi modern, performa tinggi, dan desain yang
-            menarik.
+            Saya menerima proyek pembuatan website untuk bisnis, startup, dan personal. Setiap website dibangun dengan teknologi modern, performa tinggi, dan desain yang menarik.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Service cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        {/* Cards */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12"
+        >
           {services.map(({ icon: Icon, title, desc, features, badge, badgeColor }) => (
-            <div
+            <motion.div
               key={title}
-              className="group relative bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/40 rounded-2xl p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1"
+              variants={cardVariants}
+              whileHover={{ y: -7, backgroundColor: "rgba(255,255,255,0.18)" }}
+              transition={{ type: "spring", stiffness: 280, damping: 22 }}
+              className="group relative bg-white/10 border border-white/20 hover:border-white/40 rounded-2xl p-5 backdrop-blur-sm"
             >
               {badge && (
-                <span
-                  className={`absolute -top-2.5 left-4 px-2.5 py-0.5 ${badgeColor} text-[10px] font-bold rounded-full`}
-                >
+                <span className={`absolute -top-2.5 left-4 px-2.5 py-0.5 ${badgeColor} text-[10px] font-extrabold rounded-full`}>
                   {badge}
                 </span>
               )}
-              <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center mb-4">
+              <motion.div
+                whileHover={{ rotate: 10, scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center mb-4"
+              >
                 <Icon size={18} className="text-white" />
-              </div>
-              <h3 className="text-white font-bold mb-2">{title}</h3>
+              </motion.div>
+              <h3 className="text-white font-extrabold mb-2">{title}</h3>
               <p className="text-blue-200 text-xs leading-relaxed mb-4">{desc}</p>
               <ul className="space-y-1.5">
                 {features.map((f) => (
@@ -111,34 +137,47 @@ export default function FreelanceServices() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Bottom CTA */}
-        <div className="text-center">
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-center"
+        >
           <div className="inline-flex flex-col sm:flex-row items-center gap-4">
-            <a
+            <motion.a
               href={FREELANCE_SITE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-4 bg-white text-blue-700 font-bold rounded-full hover:bg-blue-50 transition-all shadow-2xl shadow-blue-900/40 text-sm group"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2.5 px-8 py-4 bg-white text-blue-700 font-extrabold rounded-full hover:bg-blue-50 transition-all shadow-2xl shadow-blue-900/40 text-sm group"
             >
               <Zap size={16} className="text-amber-500" />
               Lihat Paket & Harga Lengkap
               <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href={`mailto:habibwafi96@gmail.com?subject=Konsultasi%20Pembuatan%20Website`}
-              className="inline-flex items-center gap-2 px-6 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:border-white hover:bg-white/10 transition-all text-sm"
+            </motion.a>
+            <motion.a
+              href={`https://wa.me/${personalInfo.whatsapp}?text=Halo%20Habib%2C%20saya%20ingin%20konsultasi%20pembuatan%20website`}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2.5 px-8 py-4 bg-green-500 hover:bg-green-400 text-white font-extrabold rounded-full transition-all shadow-xl shadow-green-900/30 text-sm"
             >
-              Konsultasi Gratis via Email
-            </a>
+              <MessageCircle size={16} />
+              Konsultasi via WhatsApp
+            </motion.a>
           </div>
           <p className="mt-4 text-blue-300/60 text-xs">
             Estimasi pengerjaan 3–14 hari kerja · Revisi termasuk · Garansi after-launch
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
