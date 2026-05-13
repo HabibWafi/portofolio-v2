@@ -5,7 +5,7 @@ const socialLinks = [
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    handle: "+62 813-8446-7988",
+    handle: "+62 813-8446-7988", 
     href: `https://wa.me/${personalInfo.whatsapp}?text=Halo%20Habib%2C%20saya%20tertarik%20dengan%20jasa%20pembuatan%20website%20Anda`,
     bg: "bg-green-500 hover:bg-green-600",
     iconColor: "text-white",
